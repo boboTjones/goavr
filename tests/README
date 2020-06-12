@@ -1,6 +1,6 @@
-Hi.
+##Tests
 
-To build the ELFs, you need CrossPack:
+This is a collection of ELF stuff that I pulled from another project. To build the ELFs, you need CrossPack:
 
 https://www.obdev.at/products/crosspack/download.html
 
