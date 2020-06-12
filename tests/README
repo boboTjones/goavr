@@ -1,0 +1,19 @@
+Hi.
+
+To build the ELFs, you need CrossPack:
+
+https://www.obdev.at/products/crosspack/download.html
+
+If those downloads don't work, you can find source on github:
+
+https://github.com/obdev/CrossPack-AVR
+
+Once you have avr-gcc, cd into one of these directories and type:
+
+$> make
+
+Feel free to modify these programs, just make sure to type
+
+$> make clean
+
+before you push to the repo.
