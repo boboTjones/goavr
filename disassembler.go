@@ -4,8 +4,7 @@ import (
 	"fmt"
 )
 
-
-func dissAssemble(b []byte) Instr {
+func (cpu *CPU) dissAssemble(b []byte) Instr {
 	dm := map[byte]byte{
 		0: 24,
 		1: 26,
@@ -164,7 +163,7 @@ func dissAssemble(b []byte) Instr {
 		k3 = uint32(current[1])<<8 | uint32(current[0])
 		inst.k32 = (k1 | k2 | k3) << 1
 		inst.objdump = fmt.Sprintf("%.4x\tcall\t0x%.8x\n", b2u16big(b), inst.k32)
-		return inst		
+		return inst
 	case INSN_ADD:
 		// 0000 11rd dddd rrrr
 		inst.source = (((b[1]&0x02)>>1)<<4 | (b[0] & 0x0f))

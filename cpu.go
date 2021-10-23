@@ -30,6 +30,18 @@ type CPU struct {
 	objdump bool
 }
 
+func NewCPU() CPU {
+	sp := StackPointer{
+		high: 0x3e,
+		low:  0x3d,
+	}
+	return CPU{
+		pc: 0,
+		sr: 0x3f,
+		sp: sp,
+	}
+}
+
 // Set bits in status register
 func (cpu *CPU) set_i() { cpu.dmem[cpu.sr] |= 128 }
 func (cpu *CPU) set_t() { cpu.dmem[cpu.sr] |= 64 }
@@ -114,23 +126,11 @@ func (cpu *CPU) Branch(offset int16) { cpu.pc = (cpu.pc + uint16(offset)) % 8192
 // Get the return value of a function for testing
 func (cpu *CPU) getReturnValue() uint16 { return b2u16little([]byte{cpu.dmem[24], cpu.dmem[25]}) }
 
-/*
-Golang Logical Operators: (because I'm tired of looking this shit up)
-+    ADD
--    SUB
-&    bitwise AND
-|    bitwise OR
-^    bitwise XOR
-&^   bit clear (AND NOT)
-
-<<   left shift
->>   right shift
-*/
-
 func (cpu *CPU) Step() {
 	//defer handlePanic()
 	cpu.imem.Fetch()
-	cpu.Execute(dissAssemble(current))
+	instr := cpu.dissAssemble(current)
+	cpu.Execute(instr)
 }
 
 func (cpu *CPU) Run() {

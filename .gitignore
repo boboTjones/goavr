@@ -1,5 +1,4 @@
-bin
-Demo/.DS_Store
+.vscode
 /testcases/abs
 /testcases/abs.dSYM/
 /testcases/atof
@@ -17,3 +16,4 @@ Demo/.DS_Store
 /testcases/labs
 /testcases/labs.dSYM/
 /strlwr.c
+goavr

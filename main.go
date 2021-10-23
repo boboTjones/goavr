@@ -20,7 +20,6 @@ func init() {
 }
 
 var cpu CPU
-var npc NPC
 
 func main() {
 
@@ -34,8 +33,9 @@ func main() {
 		os.Exit(0)
 	}
 
+	cpu = NewCPU()
+
 	if fileName == "" {
-		//fileName = "/Users/erin/codebase/fouravr/Demo/firmware/main.elf"
 		// JMP
 		// d := []byte{0x0c, 0x94, 0xc5, 0xbb}
 		// ANDI
@@ -66,17 +66,9 @@ func main() {
 	}
 
 	// Listens on a port, writes commands to dmem a la UART
-	//npc.port = ":9999"
-	//npc.rx = make(chan []byte)
-	//npc.tx = make(chan byte)
+	// npc := NewNPC(":9999")
 	//go npc.Server()
 
-	// Initial CPU things.
-	cpu.pc = 0
-	cpu.sr = 0x3f
-	cpu.sp.high = 0x3e
-	cpu.sp.low = 0x3d
-	
 	if interActive == true {
 		for cpu.pc != programEnd {
 			cpu.Interactive()

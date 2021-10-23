@@ -15,6 +15,17 @@ type NPC struct {
 	tx   chan byte
 }
 
+func NewNPC(port string) NPC {
+	rx := make(chan []byte)
+	tx := make(chan byte)
+
+	return NPC{
+		port: port,
+		rx:   rx,
+		tx:   tx,
+	}
+}
+
 func (n *NPC) writeByte() {
 	for b := range n.rx {
 		cpu.dmem[0xc0] = b[0]
