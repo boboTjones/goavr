@@ -1,9 +1,11 @@
 # GoAVR
 This is the early, pre-librification version of the AVR emulator, written in Go, for StarFighter. 
 
-# How to make it do something
+## How to make it do something
 
 ```
 go build .
 ./goavr -i -f testcases/abs.elf
 ```
+
+It works roughly like gdb after that. Type s to step, n for next, q to quit, and (I think) b for break and c for continue. 
