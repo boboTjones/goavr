@@ -22,18 +22,14 @@ func (mem *Memory) Fetch() {
 	cpu.pc += 2
 }
 
-// Use Read() for reading a single byte from data memory
+// Read() is for reading a single byte from data memory
 func (mem *Memory) Read(loc int) byte {
 	return mem[loc]
 }
 
-// Loads the executable stuff into program memory.
-
+// LoadProgram() loads the executable stuff into program memory.
 func (mem *Memory) LoadProgram(data []byte) {
-	for i, b := range data {
-		//fmt.Println(i)
-		mem[i] = b
-	}
+	copy(mem[:len(data)], data)
 }
 
 func (mem *Memory) Dump() string {

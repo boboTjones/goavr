@@ -39,6 +39,7 @@ func NewCPU() CPU {
 		pc: 0,
 		sr: 0x3f,
 		sp: sp,
+        dmem: Memory{}, // Initialize data memory
 	}
 }
 
